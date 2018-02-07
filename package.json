@@ -1,0 +1,19 @@
+{
+  "name": "node-docker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "scripts": {
+    "start": "node server/server.js",
+    "docker-start": "yarn docker-rm && docker run -d -p 8020:8020 --name my-node-docker-container node-docker:latest",
+    "docker-stop": "docker stop my-node-docker-container",
+    "docker-rm": "yarn docker-stop && docker rm my-node-docker-container",
+    "docker-build": "docker build . -t node-docker",
+    "build": "yarn build-ui && yarn build-docker",
+    "build-ui": "yarn clean-ui && cd ui && yarn build",
+    "clean-ui": "rm -rf ui/build"
+  }
+}
